@@ -2,22 +2,22 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Hexo</title>
+<title>如何理解Kosaraju算法？ - Hexo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta name="description" content="以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。   核心在于封死连通分量往外走的路   　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="如何理解Kosaraju算法？">
 <meta property="og:url" content="https://panyaoheng.github.io/blog/2019/04/23/如何理解Kosaraju算法？/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。   核心在于封死连通分量往外走的路   　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://panyaoheng.github.io/blog/images/og_image.png">
-<meta property="og:updated_time" content="2019-04-23T15:38:27.908Z">
+<meta property="og:updated_time" content="2019-04-23T15:42:02.458Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="如何理解Kosaraju算法？">
 <meta name="twitter:description" content="以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。   核心在于封死连通分量往外走的路   　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强">
 <meta name="twitter:image" content="https://panyaoheng.github.io/blog/images/og_image.png">
 
@@ -93,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/blog/">
             
-                <img src="/blog/images/logo.svg" alt height="28">
+                <img src="/blog/images/logo.svg" alt="如何理解Kosaraju算法？" height="28">
             
             </a>
         </div>
@@ -126,7 +126,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="Pencarian" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -144,13 +144,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time>
+                <time class="level-item has-text-grey" datetime="2019-04-23T15:41:45.000Z">2019-04-23</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1198 words)
+                    8 minutes membaca (Sekitar 1198 kata)
                 </span>
                 
                 
@@ -159,7 +159,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                
+                如何理解Kosaraju算法？
             
         </h1>
         <div class="content">
@@ -188,7 +188,7 @@
 
 <div class="card">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <h3 class="menu-label has-text-centered">Suka dengan artikel ini? Bantu penulis dengan donasi melalui</h3>
         <div class="buttons is-centered">
             
                 
@@ -263,7 +263,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Post
+                        Artikel
                     </p>
                     <p class="title has-text-weight-normal">
                         1
@@ -273,7 +273,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Kategori
                     </p>
                     <p class="title has-text-weight-normal">
                         0
@@ -283,7 +283,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        Tag
                     </p>
                     <p class="title has-text-weight-normal">
                         0
@@ -293,7 +293,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="http://github.com/PANYAOHENG" target="_blank">
-                Follow</a>
+                IKUTI</a>
         </div>
         
         
@@ -342,7 +342,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            Tautan
         </h3>
         <ul class="menu-list">
         
@@ -380,7 +380,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                Kategori
             </h3>
             <ul class="menu-list">
             
@@ -398,21 +398,21 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Terbaru
         </h3>
         
         <article class="media">
             
             <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt>
+                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt="如何理解Kosaraju算法？">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time></div>
-                    <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="has-link-black-ter is-size-6"></a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T15:41:45.000Z">2019-04-23</time></div>
+                    <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="has-link-black-ter is-size-6">如何理解Kosaraju算法？</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -428,7 +428,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Arsip
         </h3>
         <ul class="menu-list">
         
@@ -452,7 +452,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Tag
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -476,21 +476,21 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            Terbaru
         </h3>
         
         <article class="media">
             
             <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt>
+                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt="如何理解Kosaraju算法？">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time></div>
-                    <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="has-link-black-ter is-size-6"></a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T15:41:45.000Z">2019-04-23</time></div>
+                    <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="has-link-black-ter is-size-6">如何理解Kosaraju算法？</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -506,7 +506,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            Arsip
         </h3>
         <ul class="menu-list">
         
@@ -530,7 +530,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                Tag
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -551,7 +551,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/blog/">
                 
-                    <img src="/blog/images/logo.svg" alt height="28">
+                    <img src="/blog/images/logo.svg" alt="如何理解Kosaraju算法？" height="28">
                 
                 </a>
                 <p class="is-size-7">
@@ -663,7 +663,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/blog/js/back-to-top.js" defer></script>
@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -709,11 +709,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: 'Artikel',
+                PAGES: 'Halaman',
+                CATEGORIES: 'Kategori',
+                TAGS: 'Tag',
+                UNTITLED: 'Tanpa Judul',
             },
             CONTENT_URL: '/blog/content.json',
         };
