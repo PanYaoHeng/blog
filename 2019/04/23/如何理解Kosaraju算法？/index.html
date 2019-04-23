@@ -2,19 +2,23 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Archives: 2019 - Hexo</title>
+<title>Hexo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。   核心在于封死连通分量往外走的路   　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://panyaoheng.github.io/blog/archives/2019/index.html">
+<meta property="og:url" content="https://panyaoheng.github.io/blog/2019/04/23/如何理解Kosaraju算法？/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。   核心在于封死连通分量往外走的路   　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://panyaoheng.github.io/blog/images/og_image.png">
+<meta property="og:updated_time" content="2019-04-23T15:38:27.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。   核心在于封死连通分量往外走的路   　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强">
 <meta name="twitter:image" content="https://panyaoheng.github.io/blog/images/og_image.png">
 
 
@@ -89,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/blog/">
             
-                <img src="/blog/images/logo.svg" alt="Hexo" height="28">
+                <img src="/blog/images/logo.svg" alt height="28">
             
             </a>
         </div>
@@ -134,33 +138,89 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time>
-                        <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="has-link-black-ter is-size-6"></a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1198 words)
+                </span>
+                
+                
+            </div>
+        </div>
         
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                
+            
+        </h1>
+        <div class="content">
+            <p>　　以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。  </p>
+<p><strong>核心在于封死连通分量往外走的路</strong>  </p>
+<p>　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强连通分量编号，我们需要事先锁死H和C这两个顶点。<br><img src="https://pic2.zhimg.com/50/v2-d0d3da7fe69b44a2cf68ce1caa5aa230_b.jpg" alt><br>　　上图为一个有向图，每个绿色方框为一个强连通分量，我们想要做的就是为这几个绿色方框内的顶点关联上对应的分量编号(绿框的编号)。  </p>
+<p>　　我们将以深度优先搜索去穿越这幅图，但是我们希望每次探索都控制在一个绿色方框内，如1，进去了肯定到不了其他分量，而5通过顶点E和C、通过G和H连接起来了，它能够到达其他分量，所以我们希望当在分量5中探索时，如果到了E点，希望能够得到一个信息:不应该继续探索C顶点(H点同理)。  </p>
+<p>　　如何做到呢？考虑到深度优先搜索的特性：如果一个顶点已经探索过了，将不会再探索。那么我们只要保证在分量5内的顶点被探索时，C顶点与H顶点已经被探索过就能实现我们的目标。分量2、3、4之间的先后顺序同理。一般情况下我们使用DFS时都是从索引为0的顶点开始探索(或者其他的顶点，可视为从随机顶点开始)，无法保证分量1(还有分量3)在分量5之前探索完毕。在这个图中，无论是采用前序、后序还是逆后序，都无法达到我们的要求。</p>
+<p>　　根据逆后序的性质，我们知道先探索完的顶点将会被放在栈的底部，其顺序是比较靠后的，所以我们可以利用这一点让分量5中的顶点顺序靠后，如何做到呢？<br>　　我们观察一下图并联想一下食物链，发现分量5实际上是处于食物链较的顶端的位置，因为他通过E和G侵入了其他群落，不考虑群落内的关系，为了颠覆分量5的统治地位，我们需要反转各群落之间的关系——反转图。 </p>
+<p><img src="https://pic1.zhimg.com/50/v2-6e575542be651e87b685165dad538486_b.jpg" alt></p>
+<p><strong>一个图的反向图有着和其相同的强连通分量划分情况</strong></p>
+<p>　　这样一来，之前被分量5掠夺的群落反过来掠夺它了，也就是说，之前在分量5中探索时能够走出去的路全都反转了，走不出去了，这就给我们机会确定了分量的范围。如果你是从5开始，那么它走不出去，它内部的顶点先探索完毕，放入栈的底部；如果你是从3或者1开始，那么又将会走进5，所以5中的所有顶点也会放入栈的底部。所以反向图中，无论是从从哪里开始，都能保证在逆后序中，分量1和分量3中能够至少有一个顶点在栈中的位置处于所有5中的顶点之上。上面这幅图的逆后序(之一)为(假设从C开始)：</p>
+<blockquote>
+<p>D A B F G E C I H J  </p>
+</blockquote>
+<p>　　我们用这个逆后序去深度优先搜索(正向)图，可以发现每次递归都是在同一个强连通分量之中。当然大家可以多试试反向图中的不同的逆后序，得到的结果是一样的。举一反三，虽然这个图中的分量比较少，但基于逆后序的性质，可以推广到所有的有向图中。<br>　　这就是我理解的为什么要用反向图的逆后序去DFS正向图。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
         </div>
     </div>
 </div>
+
+
 
 
 </div>
@@ -491,7 +551,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/blog/">
                 
-                    <img src="/blog/images/logo.svg" alt="Hexo" height="28">
+                    <img src="/blog/images/logo.svg" alt height="28">
                 
                 </a>
                 <p class="is-size-7">

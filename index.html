@@ -141,13 +141,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-23T14:52:52.800Z">2019-04-23</time>
+                <time class="level-item has-text-grey" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 121 words)
+                    8 minutes read (About 1198 words)
                 </span>
                 
                 
@@ -156,19 +156,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/blog/2019/04/23/hello-world/">Hello World</a>
+                <a class="has-link-black-ter" href="/blog/2019/04/23/如何理解Kosaraju算法？/"></a>
             
         </h1>
         <div class="content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="hljs-string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>　　以《算法》第四版中的实现为例，它旨在让每次递归探索中的所有顶点属于同一强连通分量。所以可以这么理解，当递归进入一个强连通分量中时，把它锁死在这个强连通分量中。  </p>
+<p><strong>核心在于封死连通分量往外走的路</strong>  </p>
+<p>　　而如何封死呢？该算法采用的是深度优先搜索，如果遇到了已经访问过的顶点则不再访问，那么如果能让一个分量内往外走的顶点已经被访问过了，是不是就能够锁死了呢？所以下图中，为了让5中的顶点正确关联上强连通分量编号，我们需要事先锁死H和C这两个顶点。<br><img src="https://pic2.zhimg.com/50/v2-d0d3da7fe69b44a2cf68ce1caa5aa230_b.jpg" alt><br>　　上图为一个有向图，每个绿色方框为一个强连通分量，我们想要做的就是为这几个绿色方框内的顶点关联上对应的分量编号(绿框的编号)。  </p>
+<p>　　我们将以深度优先搜索去穿越这幅图，但是我们希望每次探索都控制在一个绿色方框内，如1，进去了肯定到不了其他分量，而5通过顶点E和C、通过G和H连接起来了，它能够到达其他分量，所以我们希望当在分量5中探索时，如果到了E点，希望能够得到一个信息:不应该继续探索C顶点(H点同理)。  </p>
+<p>　　如何做到呢？考虑到深度优先搜索的特性：如果一个顶点已经探索过了，将不会再探索。那么我们只要保证在分量5内的顶点被探索时，C顶点与H顶点已经被探索过就能实现我们的目标。分量2、3、4之间的先后顺序同理。一般情况下我们使用DFS时都是从索引为0的顶点开始探索(或者其他的顶点，可视为从随机顶点开始)，无法保证分量1(还有分量3)在分量5之前探索完毕。在这个图中，无论是采用前序、后序还是逆后序，都无法达到我们的要求。</p>
+<p>　　根据逆后序的性质，我们知道先探索完的顶点将会被放在栈的底部，其顺序是比较靠后的，所以我们可以利用这一点让分量5中的顶点顺序靠后，如何做到呢？<br>　　我们观察一下图并联想一下食物链，发现分量5实际上是处于食物链较的顶端的位置，因为他通过E和G侵入了其他群落，不考虑群落内的关系，为了颠覆分量5的统治地位，我们需要反转各群落之间的关系——反转图。 </p>
+<p><img src="https://pic1.zhimg.com/50/v2-6e575542be651e87b685165dad538486_b.jpg" alt></p>
+<p><strong>一个图的反向图有着和其相同的强连通分量划分情况</strong></p>
+<p>　　这样一来，之前被分量5掠夺的群落反过来掠夺它了，也就是说，之前在分量5中探索时能够走出去的路全都反转了，走不出去了，这就给我们机会确定了分量的范围。如果你是从5开始，那么它走不出去，它内部的顶点先探索完毕，放入栈的底部；如果你是从3或者1开始，那么又将会走进5，所以5中的所有顶点也会放入栈的底部。所以反向图中，无论是从从哪里开始，都能保证在逆后序中，分量1和分量3中能够至少有一个顶点在栈中的位置处于所有5中的顶点之上。上面这幅图的逆后序(之一)为(假设从C开始)：</p>
+<blockquote>
+<p>D A B F G E C I H J  </p>
+</blockquote>
+<p>　　我们用这个逆后序去深度优先搜索(正向)图，可以发现每次递归都是在同一个强连通分量之中。当然大家可以多试试反向图中的不同的逆后序，得到的结果是一样的。举一反三，虽然这个图中的分量比较少，但基于逆后序的性质，可以推广到所有的有向图中。<br>　　这就是我理解的为什么要用反向图的逆后序去DFS正向图。</p>
 
         </div>
         
@@ -364,16 +368,16 @@
         
         <article class="media">
             
-            <a href="/blog/2019/04/23/hello-world/" class="media-left">
+            <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt>
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T14:52:52.800Z">2019-04-23</time></div>
-                    <a href="/blog/2019/04/23/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time></div>
+                    <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="has-link-black-ter is-size-6"></a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -442,16 +446,16 @@
         
         <article class="media">
             
-            <a href="/blog/2019/04/23/hello-world/" class="media-left">
+            <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/blog/images/thumbnail.svg" alt>
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T14:52:52.800Z">2019-04-23</time></div>
-                    <a href="/blog/2019/04/23/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-23T15:38:52.852Z">2019-04-23</time></div>
+                    <a href="/blog/2019/04/23/如何理解Kosaraju算法？/" class="has-link-black-ter is-size-6"></a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
